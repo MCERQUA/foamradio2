@@ -3,6 +3,7 @@ import { Header } from "@/components/header"
 import { SongLibrary } from "@/components/song-library"
 import { Player } from "@/components/player"
 import { Sidebar } from "@/components/sidebar"
+import { ContactSection } from "@/components/contact-section"
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
           <Sidebar />
           <main className="flex-1 overflow-y-auto pb-28">
             <SongLibrary />
+            <ContactSection />
           </main>
         </div>
         <Player />
