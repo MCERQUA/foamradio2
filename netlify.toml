@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
-  publish = ".next"
-
+  # Static export output dir — REQUIRED for Netlify Forms capture (see next.config).
+  publish = "out"
 
 [[notifications]]
   event = "submission_created"
