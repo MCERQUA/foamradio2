@@ -4,6 +4,60 @@ import { useState } from "react"
 
 const WEBHOOK_URL = "https://josh.jam-bot.com/social-api/api/leads/webhook/netlify?tenant=josh&site=sprayfoamradio.com"
 
+const US_STATES: [string, string][] = [
+  ["AL", "Alabama"],
+  ["AK", "Alaska"],
+  ["AZ", "Arizona"],
+  ["AR", "Arkansas"],
+  ["CA", "California"],
+  ["CO", "Colorado"],
+  ["CT", "Connecticut"],
+  ["DE", "Delaware"],
+  ["DC", "District of Columbia"],
+  ["FL", "Florida"],
+  ["GA", "Georgia"],
+  ["HI", "Hawaii"],
+  ["ID", "Idaho"],
+  ["IL", "Illinois"],
+  ["IN", "Indiana"],
+  ["IA", "Iowa"],
+  ["KS", "Kansas"],
+  ["KY", "Kentucky"],
+  ["LA", "Louisiana"],
+  ["ME", "Maine"],
+  ["MD", "Maryland"],
+  ["MA", "Massachusetts"],
+  ["MI", "Michigan"],
+  ["MN", "Minnesota"],
+  ["MS", "Mississippi"],
+  ["MO", "Missouri"],
+  ["MT", "Montana"],
+  ["NE", "Nebraska"],
+  ["NV", "Nevada"],
+  ["NH", "New Hampshire"],
+  ["NJ", "New Jersey"],
+  ["NM", "New Mexico"],
+  ["NY", "New York"],
+  ["NC", "North Carolina"],
+  ["ND", "North Dakota"],
+  ["OH", "Ohio"],
+  ["OK", "Oklahoma"],
+  ["OR", "Oregon"],
+  ["PA", "Pennsylvania"],
+  ["RI", "Rhode Island"],
+  ["SC", "South Carolina"],
+  ["SD", "South Dakota"],
+  ["TN", "Tennessee"],
+  ["TX", "Texas"],
+  ["UT", "Utah"],
+  ["VT", "Vermont"],
+  ["VA", "Virginia"],
+  ["WA", "Washington"],
+  ["WV", "West Virginia"],
+  ["WI", "Wisconsin"],
+  ["WY", "Wyoming"],
+]
+
 export function ContactSection() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle")
 
@@ -62,6 +116,32 @@ export function ContactSection() {
             <div>
               <label className="block text-sm font-medium mb-1.5">Phone</label>
               <input name="phone" type="tel" className={input} placeholder="(555) 123-4567" />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1.5">Business Address *</label>
+              <input required name="street_address" type="text" autoComplete="address-line1" className={input} placeholder="1234 W Main St" />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1.5">City *</label>
+              <input required name="city" type="text" autoComplete="address-level2" className={input} placeholder="Phoenix" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-1.5">State *</label>
+                <select required name="state" autoComplete="address-level1" className={input} defaultValue="">
+                  <option value="">Select state…</option>
+                  {US_STATES.map(([abbr, label]) => (
+                    <option key={abbr} value={abbr}>{label}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1.5">ZIP Code *</label>
+                <input required name="zip" type="text" inputMode="numeric" pattern="[0-9]{5}(-[0-9]{4})?" maxLength={10} autoComplete="postal-code" className={input} placeholder="85001" />
+              </div>
             </div>
 
             <div>
