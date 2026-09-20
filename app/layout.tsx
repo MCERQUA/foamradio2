@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: "SprayFoamRadio.com - AI Music Player",
   description: "Discover and play AI-generated music at SprayFoamRadio.com",
   metadataBase: new URL("https://sprayfoamradio.com"),
+  alternates: { canonical: "/" },
   openGraph: {
     title: "SprayFoamRadio.com",
     description: "Discover and play AI-generated music",
